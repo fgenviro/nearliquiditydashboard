@@ -6,6 +6,8 @@ import { supabase, LiquiditySnapshot, getLatestSnapshots, getLatestSnapshot } fr
 import StatsCards from '@/components/StatsCards'
 import LiquidityChart from '@/components/LiquidityChart'
 import SpreadChart from '@/components/SpreadChart'
+import HistoricalChart from '@/components/HistoricalChart'
+import MarketMakerCapture from '@/components/MarketMakerCapture'
 
 export default function Dashboard() {
   const [snapshots, setSnapshots] = useState<LiquiditySnapshot[]>([])
@@ -30,7 +32,6 @@ export default function Dashboard() {
   useEffect(() => {
     fetchData()
     
-    // Real-time subscription to database changes
     const channel = supabase
       .channel('liquidity_changes')
       .on(
@@ -49,7 +50,6 @@ export default function Dashboard() {
       )
       .subscribe()
 
-    // Auto-refresh every 5 minutes
     const interval = setInterval(fetchData, 300000)
     
     return () => {
@@ -84,6 +84,12 @@ export default function Dashboard() {
         {/* Stats Cards */}
         <StatsCards snapshot={latestSnapshot} />
 
+        {/* Market Maker Capture - NEW */}
+        <MarketMakerCapture />
+
+        {/* Historical Price Chart */}
+        <HistoricalChart />
+
         {/* Liquidity Chart */}
         <LiquidityChart snapshots={snapshots} />
 
@@ -98,7 +104,7 @@ export default function Dashboard() {
               <thead>
                 <tr className="border-b border-gray-700">
                   <th className="text-left py-3 px-4 text-gray-400 font-medium">Time</th>
-                  <th className="text-right py-3 px-4 text-gray-400 font-medium">Mid Price</th>
+                  <th className="text-right py-3 px-4 text-gray-400 font-medium">SpotMid Price</th>
                   <th className="text-right py-3 px-4 text-gray-400 font-medium">Spread</th>
                   <th className="text-right py-3 px-4 text-gray-400 font-medium">50bps</th>
                   <th className="text-right py-3 px-4 text-gray-400 font-medium">1%</th>
@@ -142,4 +148,3 @@ export default function Dashboard() {
     </div>
   )
 }
-
