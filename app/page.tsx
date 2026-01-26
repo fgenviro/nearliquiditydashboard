@@ -8,12 +8,19 @@ import LiquidityChart from '@/components/LiquidityChart'
 import SpreadChart from '@/components/SpreadChart'
 import HistoricalChart from '@/components/HistoricalChart'
 import MarketMakerCapture from '@/components/MarketMakerCapture'
+import LongShortRatio from '@/components/LongShortRatio'
 
-export default function Dashboard() {
+export default function Home() {
   const [snapshots, setSnapshots] = useState<LiquiditySnapshot[]>([])
   const [latestSnapshot, setLatestSnapshot] = useState<LiquiditySnapshot | null>(null)
   const [loading, setLoading] = useState(true)
   const [lastUpdate, setLastUpdate] = useState<Date>(new Date())
+  const [mounted, setMounted] = useState(false) // Add this
+
+  // Add this useEffect
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const fetchData = async () => {
     setLoading(true)
@@ -84,8 +91,18 @@ export default function Dashboard() {
         {/* Stats Cards */}
         <StatsCards snapshot={latestSnapshot} />
 
-        {/* Market Maker Capture - NEW */}
-        <MarketMakerCapture />
+        {/* Grid Layout with Long/Short Ratio and Market Maker Capture */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+          {/* Long/Short Ratio Box - Takes 1 column */}
+          <div className="lg:col-span-1">
+            <LongShortRatio />
+          </div>
+
+          {/* Market Maker Capture - Takes 2 columns */}
+          <div className="lg:col-span-2">
+            <MarketMakerCapture />
+          </div>
+        </div>
 
         {/* Historical Price Chart */}
         <HistoricalChart />
@@ -104,7 +121,7 @@ export default function Dashboard() {
               <thead>
                 <tr className="border-b border-gray-700">
                   <th className="text-left py-3 px-4 text-gray-400 font-medium">Time</th>
-                  <th className="text-right py-3 px-4 text-gray-400 font-medium">SpotMid Price</th>
+                  <th className="text-right py-3 px-4 text-gray-400 font-medium">Mid Price</th>
                   <th className="text-right py-3 px-4 text-gray-400 font-medium">Spread</th>
                   <th className="text-right py-3 px-4 text-gray-400 font-medium">50bps</th>
                   <th className="text-right py-3 px-4 text-gray-400 font-medium">1%</th>
@@ -139,9 +156,13 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Footer */}
+        {/* Footer - Updated with client-side only rendering */}
         <div className="mt-8 text-center text-gray-500 text-sm">
-          <p>Last updated: {lastUpdate.toLocaleString()}</p>
+          {mounted ? (
+            <p>Last updated: {lastUpdate.toLocaleString()}</p>
+          ) : (
+            <p>Loading...</p>
+          )}
           <p className="mt-2">Data updates automatically every 30 minutes</p>
         </div>
       </div>
