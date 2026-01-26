@@ -9,15 +9,15 @@ import SpreadChart from '@/components/SpreadChart'
 import HistoricalChart from '@/components/HistoricalChart'
 import MarketMakerCapture from '@/components/MarketMakerCapture'
 import LongShortRatio from '@/components/LongShortRatio'
+import ManifoldMetrics from '@/components/ManifoldMetrics'
 
 export default function Home() {
   const [snapshots, setSnapshots] = useState<LiquiditySnapshot[]>([])
   const [latestSnapshot, setLatestSnapshot] = useState<LiquiditySnapshot | null>(null)
   const [loading, setLoading] = useState(true)
   const [lastUpdate, setLastUpdate] = useState<Date>(new Date())
-  const [mounted, setMounted] = useState(false) // Add this
+  const [mounted, setMounted] = useState(false)
 
-  // Add this useEffect
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -104,6 +104,9 @@ export default function Home() {
           </div>
         </div>
 
+        {/* 🆕 Manifold Performance Metrics */}
+        <ManifoldMetrics />
+
         {/* Historical Price Chart */}
         <HistoricalChart />
 
@@ -156,7 +159,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Footer - Updated with client-side only rendering */}
+        {/* Footer */}
         <div className="mt-8 text-center text-gray-500 text-sm">
           {mounted ? (
             <p>Last updated: {lastUpdate.toLocaleString()}</p>

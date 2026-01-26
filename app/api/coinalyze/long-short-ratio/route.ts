@@ -15,8 +15,8 @@ export async function GET() {
   try {
     // Fetch data for both exchanges
     const symbols = [
-      'BTCUSDT_PERP.A',  // Binance
-      'BTCUSDT_PERP.4',  // Bybit
+      'NEARUSDT_PERP.A',  // Binance
+      'NEARUSDT_PERP.4',  // Bybit
     ];
 
     const requests = symbols.map(symbol =>

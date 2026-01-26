@@ -10,7 +10,7 @@ export default function MarketMakerCapture() {
   const marketMakers: MarketMaker[] = [
     { name: 'G20', capture: 0.46 },
     { name: 'Manifold', capture: 10 },
-    { name: 'IMC', capture: 'Pending', isPending: true }
+    { name: 'IMC', capture: 4.1}
   ]
 
   const formatCapture = (capture: string | number) => {
