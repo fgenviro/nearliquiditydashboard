@@ -223,7 +223,11 @@ export default function HistoricalChart() {
                 borderRadius: '8px'
               }}
               labelFormatter={(label) => new Date(label).toLocaleString()}
-              formatter={(value: number) => [`$${value.toFixed(4)}`, 'Price']}
+              formatter={(value: number | undefined) => {
+                 if (value === undefined) return ['$0.0000', 'Price'];
+                 return [`$${value.toFixed(4)}`, 'Price'];
+                }}
+
             />
             <Legend />
             <Line 
