@@ -10,6 +10,8 @@ import HistoricalChart from '@/components/HistoricalChart'
 import MarketMakerCapture from '@/components/MarketMakerCapture'
 import LongShortRatio from '@/components/LongShortRatio'
 import ManifoldMetrics from '@/components/ManifoldMetrics'
+import G20Metrics from '@/components/G20Metrics'
+import IMCPerformanceStats from '@/components/IMCPerformanceStats';
 
 export default function Home() {
   const [snapshots, setSnapshots] = useState<LiquiditySnapshot[]>([])
@@ -104,8 +106,14 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 🆕 Manifold Performance Metrics */}
+        {/* 🆕 Manifold Market Making Metrics */}
         <ManifoldMetrics />
+
+        {/* New IMC Stats */}  
+        <IMCPerformanceStats />
+
+        {/* 🆕 G20 Market Making Metrics */}
+        <G20Metrics />
 
         {/* Historical Price Chart */}
         <HistoricalChart />
