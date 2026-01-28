@@ -7,8 +7,6 @@ import StatsCards from '@/components/StatsCards'
 import LiquidityChart from '@/components/LiquidityChart'
 import SpreadChart from '@/components/SpreadChart'
 import HistoricalChart from '@/components/HistoricalChart'
-import MarketMakerCapture from '@/components/MarketMakerCapture'
-import LongShortRatio from '@/components/LongShortRatio'
 import ManifoldMetrics from '@/components/ManifoldMetrics'
 import G20Metrics from '@/components/G20Metrics'
 import IMCPerformanceStats from '@/components/IMCPerformanceStats';
@@ -93,18 +91,6 @@ export default function Home() {
         {/* Stats Cards */}
         <StatsCards snapshot={latestSnapshot} />
 
-        {/* Grid Layout with Long/Short Ratio and Market Maker Capture */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-          {/* Long/Short Ratio Box - Takes 1 column */}
-          <div className="lg:col-span-1">
-            <LongShortRatio />
-          </div>
-
-          {/* Market Maker Capture - Takes 2 columns */}
-          <div className="lg:col-span-2">
-            <MarketMakerCapture />
-          </div>
-        </div>
 
         {/* 🆕 Manifold Market Making Metrics */}
         <ManifoldMetrics />
