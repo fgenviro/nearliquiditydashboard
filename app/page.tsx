@@ -11,6 +11,17 @@ import ManifoldMetrics from '@/components/ManifoldMetrics'
 import G20Metrics from '@/components/G20Metrics'
 import IMCPerformanceStats from '@/components/IMCPerformanceStats';
 
+// In your page.tsx, add this button in the header:
+<button 
+  onClick={async () => {
+    await fetch('/api/auth/logout', { method: 'POST' })
+    window.location.href = '/login'
+  }}
+  className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm"
+>
+  Logout
+</button>
+
 export default function Home() {
   const [snapshots, setSnapshots] = useState<LiquiditySnapshot[]>([])
   const [latestSnapshot, setLatestSnapshot] = useState<LiquiditySnapshot | null>(null)
