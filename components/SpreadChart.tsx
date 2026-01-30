@@ -57,7 +57,7 @@ export default function SpreadChart({ snapshots }: SpreadChartProps) {
     <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-8">
       {/* Header with Title and Dropdown */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-white">Spread Trends</h2>
+        <h2 className="text-2xl font-bold text-white">Binance NEARUSDT Historical Spread</h2>
         
         {/* Dropdown Filter */}
         <div className="flex items-center gap-2">

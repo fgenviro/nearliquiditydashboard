@@ -6,7 +6,6 @@ import { supabase, LiquiditySnapshot, getLatestSnapshots, getLatestSnapshot } fr
 import StatsCards from '@/components/StatsCards'
 import LiquidityChart from '@/components/LiquidityChart'
 import SpreadChart from '@/components/SpreadChart'
-import HistoricalChart from '@/components/HistoricalChart'
 import ManifoldMetrics from '@/components/ManifoldMetrics'
 import G20Metrics from '@/components/G20Metrics'
 import IMCPerformanceStats from '@/components/IMCPerformanceStats';
@@ -94,15 +93,14 @@ export default function Home() {
         {/* Liquidity Chart */}
         <LiquidityChart snapshots={snapshots} />
 
-        {/* 🆕 Manifold Market Making Metrics */}
+        {/* Manifold Market Making Metrics */}
         <ManifoldMetrics />
 
-        {/* New IMC Stats */}  
+        {/* IMC Performance Stats */}  
         <IMCPerformanceStats />
 
-        {/* 🆕 G20 Market Making Metrics */}
+        {/* G20 Market Making Metrics */}
         <G20Metrics />
-
 
         {/* Spread Chart */}
         <SpreadChart snapshots={snapshots} />
